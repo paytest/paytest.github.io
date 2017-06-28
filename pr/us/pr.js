@@ -10,10 +10,14 @@
  */
 function updateDetails(details, addr) {
   if (addr.country === 'US') {
+    delete details.error;
     var shippingOption = {
       id: '',
       label: '',
-      amount: {currency: 'USD', value: '0.00'},
+      amount: {
+        currency: 'USD',
+        value: '0.00'
+      },
       selected: true
     };
     if (addr.region === 'CA') {
@@ -26,14 +30,11 @@ function updateDetails(details, addr) {
       shippingOption.amount.value = '5.00';
       details.total.amount.value = '60.00';
     }
-    if (details.displayItems.length === 2) {
-      details.displayItems.splice(1, 0, shippingOption);
-    } else {
-      details.displayItems.splice(1, 1, shippingOption);
-    }
+    details.displayItems.splice(1, 1, shippingOption);
     details.shippingOptions = [shippingOption];
   } else {
     delete details.shippingOptions;
+    details.error = "Cannot ship outside of US."
   }
   return details;
 }
@@ -42,11 +43,11 @@ function updateDetails(details, addr) {
  * Launches payment request that provides different shipping options based on
  * the shipping address that the user selects.
  */
-function onBuyClicked() {  // eslint-disable-line no-unused-vars
-  var supportedInstruments = [
-    {
+function onBuyClicked() { // eslint-disable-line no-unused-vars
+  var supportedInstruments = [{
       supportedMethods: ['https://android.com/pay'],
       data: {
+        merchantName: 'Rouslan Solomakhin',
         merchantId: '00184145120947117657',
         allowedCardNetworks: ['AMEX', 'MASTERCARD', 'VISA', 'DISCOVER'],
         paymentMethodTokenizationParameters: {
@@ -60,27 +61,46 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       }
     },
     {
-      supportedMethods: [
-        'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'
-      ]
+      supportedMethods: ['basic-card']
     }
   ];
 
   var details = {
-    total: {label: 'Donation', amount: {currency: 'USD', value: '55.00'}},
-    displayItems: [
-      {
+    total: {
+      label: 'Donation',
+      amount: {
+        currency: 'USD',
+        value: '55.00'
+      }
+    },
+    displayItems: [{
         label: 'Original donation amount',
-        amount: {currency: 'USD', value: '65.00'}
+        amount: {
+          currency: 'USD',
+          value: '65.00'
+        }
+      },
+      {
+        label: 'Pending shipping price',
+        amount: {
+          currency: 'USD',
+          value: '0.00'
+        },
+        pending: true
       },
       {
         label: 'Friends and family discount',
-        amount: {currency: 'USD', value: '-10.00'}
+        amount: {
+          currency: 'USD',
+          value: '-10.00'
+        }
       }
     ]
   };
 
-  var options = {requestShipping: true};
+  var options = {
+    requestShipping: true
+  };
 
   if (!window.PaymentRequest) {
     error('PaymentRequest API is not supported.');
@@ -99,20 +119,20 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     });
 
     request.show()
-        .then(function(instrumentResponse) {
-          window.setTimeout(function() {
-            instrumentResponse.complete('success')
-                .then(function() {
-                  done('Thank you!', instrumentResponse);
-                })
-                .catch(function(err) {
-                  error(err);
-                });
-          }, 2000);
-        })
-        .catch(function(err) {
-          error(err);
-        });
+      .then(function(instrumentResponse) {
+        window.setTimeout(function() {
+          instrumentResponse.complete('success')
+            .then(function() {
+              done('This is a demo website. No payment will be processed.', instrumentResponse);
+            })
+            .catch(function(err) {
+              error(err);
+            });
+        }, 2000);
+      })
+      .catch(function(err) {
+        error(err);
+      });
   } catch (e) {
     error('Developer mistake: \'' + e.message + '\'');
   }

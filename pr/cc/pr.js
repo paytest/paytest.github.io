@@ -1,6 +1,9 @@
- /**
+/* global done:false */
+/* global error:false */
+/* global PaymentRequest:false */
+
+/**
  * Initializes the payment request object.
- * @return {PaymentRequest} The payment request object.
  */
 function buildPaymentRequest() {
   if (!window.PaymentRequest) {
@@ -9,30 +12,30 @@ function buildPaymentRequest() {
 
   var supportedInstruments = [{
     supportedMethods: [
-      'unionpay', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb'
+      'basic-card',
     ]
   }];
 
-  const details = {
+  var details = {
     total: {
       label: 'Donation',
       amount: {
         currency: 'USD',
-        value: '55.00',
-      },
+        value: '55.00'
+      }
     },
     displayItems: [{
       label: 'Original donation amount',
       amount: {
         currency: 'USD',
-        value: '65.00',
-      },
+        value: '65.00'
+      }
     }, {
       label: 'Friends and family discount',
       amount: {
         currency: 'USD',
-        value: '-10.00',
-      },
+        value: '-10.00'
+      }
     }],
     modifiers: [{
       supportedMethods: ['visa'],
@@ -40,29 +43,29 @@ function buildPaymentRequest() {
         label: 'Discounted donation',
         amount: {
           currency: 'USD',
-          value: '45.00',
-        },
+          value: '45.00'
+        }
       },
       additionalDisplayItems: [{
         label: 'VISA discount',
         amount: {
           currency: 'USD',
-          value: '-10.00',
-        },
+          value: '-10.00'
+        }
       }],
       data: {
-        discountProgramParticipantId: '86328764873265',
-      },
-    }],
+        discountProgramParticipantId: '86328764873265'
+      }
+    }]
   };
 
-  let request = null;
+  var request = null;
 
   try {
     request = new PaymentRequest(supportedInstruments, details);
     if (request.canMakePayment) {
       request.canMakePayment().then(function(result) {
-        info(result ? 'Can make payment' : 'Cannot make payment');
+        info(result ? "Can make payment" : "Cannot make payment");
       }).catch(function(err) {
         error(err);
       });
@@ -74,10 +77,10 @@ function buildPaymentRequest() {
   return request;
 }
 
-let request = buildPaymentRequest();
+var request = buildPaymentRequest();
 
 /**
- * Launches payment request that does not require shipping.
+ * Launches payment request for credit cards.
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   if (!window.PaymentRequest || !request) {
@@ -91,7 +94,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         window.setTimeout(function() {
           instrumentResponse.complete('success')
             .then(function() {
-              done('Thank you!', instrumentResponse);
+              done('This is a demo website. No payment will be processed.', instrumentResponse);
             })
             .catch(function(err) {
               error(err);

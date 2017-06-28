@@ -5,11 +5,11 @@
 /**
  * Launches payment request that provides free shipping worldwide.
  */
-function onBuyClicked() {  // eslint-disable-line no-unused-vars
-  var supportedInstruments = [
-    {
+function onBuyClicked() { // eslint-disable-line no-unused-vars
+  var supportedInstruments = [{
       supportedMethods: ['https://android.com/pay'],
       data: {
+        merchantName: 'Rouslan Solomakhin',
         merchantId: '00184145120947117657',
         allowedCardNetworks: ['AMEX', 'MASTERCARD', 'VISA', 'DISCOVER'],
         paymentMethodTokenizationParameters: {
@@ -24,21 +24,32 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     },
     {
       supportedMethods: [
-        'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'
+        'basic-card'
       ]
     }
   ];
 
   var details = {
-    total: {label: 'Donation', amount: {currency: 'USD', value: '55.00'}},
-    displayItems: [
-      {
+    total: {
+      label: 'Donation',
+      amount: {
+        currency: 'USD',
+        value: '55.00'
+      }
+    },
+    displayItems: [{
         label: 'Original donation amount',
-        amount: {currency: 'USD', value: '65.00'}
+        amount: {
+          currency: 'USD',
+          value: '65.00'
+        }
       },
       {
         label: 'Friends and family discount',
-        amount: {currency: 'USD', value: '-10.00'}
+        amount: {
+          currency: 'USD',
+          value: '-10.00'
+        }
       }
     ]
   };
@@ -57,20 +68,20 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
   try {
     var request = new PaymentRequest(supportedInstruments, details, options);
     request.show()
-        .then(function(instrumentResponse) {
-          window.setTimeout(function() {
-            instrumentResponse.complete('success')
-                .then(function() {
-                  done('Thank you!', instrumentResponse);
-                })
-                .catch(function(err) {
-                  error(err);
-                });
-          }, 2000);
-        })
-        .catch(function(err) {
-          error(err);
-        });
+      .then(function(instrumentResponse) {
+        window.setTimeout(function() {
+          instrumentResponse.complete('success')
+            .then(function() {
+              done('This is a demo website. No payment will be processed.', instrumentResponse);
+            })
+            .catch(function(err) {
+              error(err);
+            });
+        }, 2000);
+      })
+      .catch(function(err) {
+        error(err);
+      });
   } catch (e) {
     error('Developer mistake: \'' + e.message + '\'');
   }

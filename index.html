@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,34 +8,26 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="manifest" href="/manifest.json">
 </head>
+
 <body>
   <ul>
     <li>PaymentRequest
       <ul>
-        <!--
-        <li>Production
-          <ul>
-            <li><a href="pr/">Android Pay production</a></li>
-            <li><a href="pr/">Google Payments production</a></li>
-          </ul>
-        </li>
-        -->
-        <li>Payment method
-          <ul>
-            <li><a href="pr/basic">basic-card support</a></li>
-            <li><a href="pr/cc">credit card</a></li>
-          </ul>
-        </li>
+        <li><a href="pr/">Android Pay and credit cards</a></li>
+        <li><a href="pr/ap/">Android Pay only</a></li>
+        <li><a href="pr/cc/">Credit cards only</a></li>
+        <li><a href="pr/bob/">Bob Pay</a></li>
+        <li><a href="pr/alipay/">Alipay</a></li>
+        <li><a href="pr/iframe/">IFrame</a></li>
         <li>Shipping, delivery, pickup
           <ul>
             <li><a href="pr/single/">Worldwide single-option shipping</a></li>
             <li><a href="pr/multi/">Worldwide multi-option shipping</a></li>
-            <!--
+            <li><a href="pr/expl/">Worldwide multi-option shipping without
+                pre-selection</a></li>
             <li><a href="pr/us/">US-only shipping</a></li>
-            -->
             <li><a href="pr/delivery/">US-only delivery</a></li>
             <li><a href="pr/pickup/">US-only pickup</a></li>
-            <li><a href="pr/pending/">pending item</a></li>
           </ul>
         </li>
         <li>Contact info
@@ -43,9 +36,12 @@
             <li><a href="pr/phone/">Merchant requests phone only</a></li>
             <li><a href="pr/email/">Merchant requests email only</a></li>
             <li><a href="pr/name/">Merchant requests name only</a></li>
+            <li><a href="pr/de/">Merchant requests a delivery address and e-mail</a></li>
           </ul>
         </li>
-        <li> exception test
+        <li><a href="pr/type/">Credit, debit, prepaid</a></li>
+        <li><a href="pr/ko/">Failures</a></li>
+		<li> exception test
           <ul>
             <li><a href="pr/fail/">always fail when payment processing.</a></li>
             <li><a href="pr/abort/">abort by merchant.</a></li>
@@ -61,4 +57,5 @@
   </ul>
   <script src="/redirect.js"></script>
 </body>
+
 </html>
