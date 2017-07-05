@@ -72,7 +72,7 @@ function toDictionary(addr) {  // eslint-disable-line no-unused-vars
  */
 function done(message, resp) {  // eslint-disable-line no-unused-vars
   let element = document.getElementById('contents');
-  element.innerHTML = '<h2>Payment Complete</h2><p>' + message + '</p>';
+  element.innerHTML = '<h1>Payment Complete</h1><p>' + message + '</p>';
 
   if (resp.toJSON) {
     info(JSON.stringify(resp, undefined, 2));
