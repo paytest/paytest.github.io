@@ -23,7 +23,7 @@ function buildPaymentRequest() {
       },
     },
   }, {
-    supportedMethods: ['basic-card'],
+    supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'],
   }];
 
   const details = {

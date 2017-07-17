@@ -11,7 +11,7 @@ function buildPaymentRequest() {
   }
 
   const supportedInstruments = [{
-    supportedMethods: ['basic-card'],
+    supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'],
     data: {
       supportedTypes: ['credit', 'debit'],
     },
