@@ -81,7 +81,8 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         amount: {
           currency: 'USD',
           value: '0.00'
-        }
+        },
+        selected = false;
       },
       {
         id: 'express',
@@ -89,7 +90,8 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         amount: {
           currency: 'USD',
           value: '12.00'
-        }
+        },
+        selected = false;
       }
     ]
   };
