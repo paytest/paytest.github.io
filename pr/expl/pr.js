@@ -95,6 +95,50 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
       }
     ]
   };
+  
+   var details1 = {
+    total: {
+      label: 'Donation',
+      amount: {
+        currency: 'USD',
+        value: '55.00'
+      }
+    },
+    displayItems: [{
+        label: 'Original donation amount',
+        amount: {
+          currency: 'USD',
+          value: '65.00'
+        }
+      },
+      {
+        label: 'Friends and family discount',
+        amount: {
+          currency: 'USD',
+          value: '-10.00'
+        }
+      }
+    ],
+    shippingOptions: [{
+        id: 'standard1',
+        label: 'Standard shipping1',
+        amount: {
+          currency: 'USD',
+          value: '0.00'
+        },
+        selected = false;
+      },
+      {
+        id: 'express1',
+        label: 'Express shipping1',
+        amount: {
+          currency: 'USD',
+          value: '12.00'
+        },
+        selected = false;
+      }
+    ]
+  };
 
   var options = {
     requestShipping: true
@@ -112,7 +156,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
       e.updateWith(new Promise(function(resolve) {
         window.setTimeout(function() {
           // No changes in price based on shipping address change.
-          resolve(details);
+          resolve(details1);
         }, 2000);
       }));
     });
