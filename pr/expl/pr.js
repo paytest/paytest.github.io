@@ -82,7 +82,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
           currency: 'USD',
           value: '0.00'
         },
-        selected = false;
+        selected = false,
       },
       {
         id: 'express',
@@ -91,7 +91,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
           currency: 'USD',
           value: '12.00'
         },
-        selected = false;
+        selected = false,
       }
     ]
   };
@@ -126,7 +126,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
           currency: 'USD',
           value: '0.00'
         },
-        selected = false;
+        selected = false,
       },
       {
         id: 'express1',
@@ -135,7 +135,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
           currency: 'USD',
           value: '12.00'
         },
-        selected = false;
+        selected = false,
       }
     ]
   };
