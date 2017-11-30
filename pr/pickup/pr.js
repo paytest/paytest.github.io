@@ -109,13 +109,13 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
   try {
     var request = new PaymentRequest(supportedInstruments, details, options);
 
-//    request.addEventListener('shippingaddresschange', function(e) {
-//      e.updateWith(new Promise(function(resolve) {
-//        window.setTimeout(function() {
-//          resolve(updateDetails(details, request.shippingAddress));
-//        }, 2000);
-//      }));
-//    });
+    request.addEventListener('shippingaddresschange', function(e) {
+      e.updateWith(new Promise(function(resolve) {
+        window.setTimeout(function() {
+          resolve(updateDetails(details, request.shippingAddress));
+        }, 2000);
+      }));
+    });
 
     request.show()
       .then(function(instrumentResponse) {
