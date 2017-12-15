@@ -48,24 +48,43 @@ function buildPaymentRequest() {
       },
     }],
     modifiers: [{
-      supportedMethods: ['visa'],
+      supportedMethods: ['basic-card'],
+      data: {
+        supportedTypes: ['debit'],
+      },
       total: {
-        label: 'Discounted donation',
+        label: 'Debit card discounted donation',
         amount: {
           currency: 'USD',
           value: '45.00',
         },
       },
       additionalDisplayItems: [{
-        label: 'VISA discount',
+        label: 'Debit card discount',
         amount: {
           currency: 'USD',
           value: '-10.00',
         },
       }],
+    }, {
+      supportedMethods: ['basic-card'],
       data: {
-        discountProgramParticipantId: '86328764873265',
+        supportedNetworks: ['mastercard'],
       },
+      total: {
+        label: 'MasterCard discounted donation',
+        amount: {
+          currency: 'USD',
+          value: '50.00',
+        },
+      },
+      additionalDisplayItems: [{
+        label: 'MasterCard discount',
+        amount: {
+          currency: 'USD',
+          value: '-5.00',
+        },
+      }],
     }],
   };
 
@@ -104,7 +123,8 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         window.setTimeout(function() {
           instrumentResponse.complete('success')
             .then(function() {
-              done('This is a demo website. No payment will be processed.', instrumentResponse);
+              done('This is a demo website. No payment will be processed.',
+                instrumentResponse);
             })
             .catch(function(err) {
               error(err);
