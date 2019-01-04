@@ -89,6 +89,21 @@
 	  form['name'].value = 'Barackalypse';
 	  form['password'].value = 'ILoveGeorgeBush';
       }
+      var NPFillFormSimpsons2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Homer_Simpson';
+	  form['password'].value = 'DOH!';
+      }
+      var NPFillFormSuperman2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Superman';
+	  form['password'].value = 'LouisLane';
+      }
+      var NPFillFormPresident2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Barackalypse';
+	  form['password'].value = 'ILoveGeorgeBush';
+      }
 
     </script>
     <style>
@@ -264,20 +279,20 @@
 <hr>
   <h3>Name/Password2</h3>
 
-  <form name="np" id="np1" action="https://example.com/" method="post">
-  Name: <input type="text" name="name" id="password_name"><br>
-  Password: <input type="password" name="password" id="password_field"><br>
+  <form name="np" id="np2" action="https://example.com/" method="post">
+  Name: <input type="text" name="name" id="password_name2"><br>
+  Password: <input type="password" name="password" id="password_field2"><br>
   <input type="reset" value="Reset">
   <input type="submit" value="Submit" id="password_submit">
   </form>
 
 <p>
 
-<button type="button" onclick="NPFillFormSimpsons()">NP Fill Form (Simpsons)</button>
+<button type="button" onclick="NPFillFormSimpsons2()">NP Fill Form (Simpsons)</button>
 <br>
-<button type="button" onclick="NPFillFormSuperman()">NP Fill Form (Superman)</button>
+<button type="button" onclick="NPFillFormSuperman2()">NP Fill Form (Superman)</button>
 <br>
-<button type="button" onclick="NPFillFormPresident()">NP Fill Form (President)</button>
+<button type="button" onclick="NPFillFormPresident2()">NP Fill Form (President)</button>
 <br></p></hr>
 
 <!--
