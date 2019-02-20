@@ -43,7 +43,7 @@ function updateDetails(details, addr) {
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   var supportedInstruments = [{
-      supportedMethods: ['https://android.com/pay'],
+      supportedMethods: 'https://android.com/pay',
       data: {
         merchantName: 'Rouslan Solomakhin',
         merchantId: '00184145120947117657',
@@ -59,7 +59,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
       }
     },
     {
-      supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay']
+      supportedMethods: 'basic-card'
     }
   ];
 
@@ -115,6 +115,10 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
           resolve(updateDetails(details, request.shippingAddress));
         }, 2000);
       }));
+    });
+
+    request.addEventListener('shippingoptionchange', function(e) {
+      e.updateWith(details);
     });
 
     request.show()

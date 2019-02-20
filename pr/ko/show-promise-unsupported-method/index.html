@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Show Promise for Unsupported Payment Method Identifer Test</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+  <div id="contents">
+    <h1>Show Promise for Unsupported Payment Method Identifer Test</h1>
+    <p>This page can be used to test the show promise. The payment sheet
+    should not display because show is called for an unsupported payment
+    method identifier. This will cancel the payment request.</p>
+    <p>Price: USD <strong>$1.00</strong> <em>(tentative)</em></p>
+    <p><button onclick="onBuyClicked()">Buy</button></p>
+    <p>No payment will be processed.</p>
+  </div>
+  <pre id="msg"></pre>
+  <script src="../../util.js"></script>
+  <script src="pr.js"></script>
+  <script src="/redirect.js"></script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+/* exported onBuyClicked */
+
 /**
  * Initializes the payment request object.
  * @return {PaymentRequest} The payment request object.
@@ -8,54 +10,34 @@ function buildPaymentRequest() {
   }
 
   const supportedInstruments = [{
-    supportedMethods: ['basic-card' 'visa', 'mastercard'],
+    supportedMethods: 'https://google.com/pay',
     data: {
-      supportedNetworks: ['visa', 'mastercard'],
-      supportedTypes: ['prepaid', 'debit', 'credit'],
+      allowedPaymentMethods: ['TOKENIZED_CARD', 'CARD'],
+      apiVersion: 1,
+      cardRequirements: {
+        'allowedCardNetworks': ['VISA', 'MASTERCARD', 'AMEX'],
+      },
+      merchantName: 'Rouslan Solomakhin',
+      merchantId: '00184145120947117657',
+      paymentMethodTokenizationParameters: {
+        tokenizationType: 'GATEWAY_TOKEN',
+        parameters: {
+          'gateway': 'stripe',
+          'stripe:publishableKey': 'pk_live_lNk21zqKM2BENZENh3rzCUgo',
+          'stripe:version': '2016-07-06',
+        },
+      },
     },
   }];
 
   const details = {
     total: {
-      label: 'Donation',
+      label: 'Tots',
       amount: {
         currency: 'USD',
-        value: '55.00',
+        value: '1.00',
       },
     },
-    displayItems: [{
-      label: 'Original donation amount',
-      amount: {
-        currency: 'USD',
-        value: '65.00',
-      },
-    }, {
-      label: 'Friends and family discount',
-      amount: {
-        currency: 'USD',
-        value: '-10.00',
-      },
-    }],
-    modifiers: [{
-      supportedMethods: ['visa'],
-      total: {
-        label: 'Discounted donation',
-        amount: {
-          currency: 'USD',
-          value: '45.00',
-        },
-      },
-      additionalDisplayItems: [{
-        label: 'VISA discount',
-        amount: {
-          currency: 'USD',
-          value: '-10.00',
-        },
-      }],
-      data: {
-        discountProgramParticipantId: '86328764873265',
-      },
-    }],
   };
 
   let request = null;
@@ -79,9 +61,9 @@ function buildPaymentRequest() {
 let request = buildPaymentRequest();
 
 /**
- * Launches payment request that does not require shipping.
+ * Launches payment request for Android Pay.
  */
-function onBuyClicked() { // eslint-disable-line no-unused-vars
+function onBuyClicked() {
   if (!window.PaymentRequest || !request) {
     error('PaymentRequest API is not supported.');
     return;
@@ -93,7 +75,8 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         window.setTimeout(function() {
           instrumentResponse.complete('success')
             .then(function() {
-              done('Thank you!', instrumentResponse);
+              done('This is a demo website. No payment will be processed.',
+                instrumentResponse);
             })
             .catch(function(err) {
               error(err);

@@ -11,7 +11,7 @@ function buildPaymentRequest() {
   }
 
   const supportedInstruments = [{
-    supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'],
+    supportedMethods: 'basic-card',
     data: {
       supportedTypes: ['prepaid'],
     },

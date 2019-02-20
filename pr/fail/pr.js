@@ -8,7 +8,7 @@
 function onBuyClicked() {  // eslint-disable-line no-unused-vars
   var supportedInstruments = [
     {
-      supportedMethods: ['https://android.com/pay'],
+      supportedMethods: 'https://android.com/pay',
       data: {
         merchantId: '00184145120947117657',
         allowedCardNetworks: ['AMEX', 'MASTERCARD', 'VISA', 'DISCOVER'],
@@ -23,9 +23,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       }
     },
     {
-      supportedMethods: [
-        'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'
-      ]
+      supportedMethods: 'basic-card'
     }
   ];
 

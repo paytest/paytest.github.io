@@ -49,9 +49,7 @@ function updateDetails(details, shippingOption) {
 function onBuyClicked() {  // eslint-disable-line no-unused-vars
   var supportedInstruments = [
     {
-      supportedMethods: [
-        'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'
-      ]
+      supportedMethods: 'basic-card',
     }
   ];
 

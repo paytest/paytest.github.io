@@ -7,7 +7,7 @@ function buildPaymentRequest() {
   }
 
   var supportedInstruments = [{
-    supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay']
+    supportedMethods: 'basic-card'
   }];
 
   var details = {
@@ -32,7 +32,7 @@ function buildPaymentRequest() {
       }
     }],
     modifiers: [{
-      supportedMethods: ['basic-card'],
+      supportedMethods: 'basic-card',
       total: {
         label: 'Discounted donation',
         amount: {

@@ -16,9 +16,9 @@ function buildPaymentRequest(prtype) {
   }
 
   const supportedInstruments = [{
-    supportedMethods: [
-      'basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay'
-    ],
+    supportedMethods: 
+      'basic-card',
+    
   }];
 
   if (prtype === PRTYPE.UNKNOWN_ENUM_VALUES_IN_SUPPORTED_NETWORKS) {

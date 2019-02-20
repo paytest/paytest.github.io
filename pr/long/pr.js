@@ -7,7 +7,7 @@
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   var supportedInstruments = [{
-    supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay']
+    supportedMethods: 'basic-card'
   }];
 
   var details = {

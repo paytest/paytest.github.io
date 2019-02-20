@@ -13,18 +13,25 @@
   <ul>
     <li>PaymentRequest
       <ul>
-        <li><a href="pr/">Android Pay and credit cards</a></li>
-        <li><a href="pr/ap/">Android Pay only</a></li>
+        <li><a href="pr/gp/">Google Pay only</a></li>
+        <li><a href="pr/pwg/">Google Pay and credit cards</a></li>
         <li><a href="pr/cc/">Credit cards only</a></li>
         <li><a href="pr/alice/">Alice Pay</a></li>
         <li><a href="pr/bob/">Bob Pay</a></li>
-        <li><a href="pr/alipay/">Alipay</a></li>
+        <li><a href="pr/skip-ui/">Skip UI flow</a></li>
+        <li><a href="pr/cs/">Credit Suisse app</a></li>
+        <li><a href="pr/apps/">Payment handlers</a></li>
         <li><a href="pr/iframe/">IFrame</a></li>
+        <li><a href="pr/ko/">Failures</a></li>
         <li><a href="pr/pending/">Pending item</a></li>
         <li>Shipping, delivery, pickup
           <ul>
             <li><a href="pr/single/">Worldwide single-option shipping</a></li>
+            <li><a href="pr/single-empty/">Worldwide single-option shipping
+                that sends empty updates for shipping</a></li>
             <li><a href="pr/multi/">Worldwide multi-option shipping</a></li>
+            <li><a href="pr/multi-no-total/">Worldwide multi-option shipping
+                that omits total in updates</a></li>
             <li><a href="pr/expl/">Worldwide multi-option shipping without
                 pre-selection</a></li>
             <li><a href="pr/us/">US-only shipping</a></li>
@@ -41,7 +48,26 @@
             <li><a href="pr/de/">Merchant requests a delivery address and e-mail</a></li>
           </ul>
         </li>
+        <li>Show promise
+          <ul>
+            <li><a href="pr/wait/">Show promise for digital goods</a></li>
+            <li><a href="pr/single-wait/">Show promise with worldwide single-option shipping</a></li>
+            <li><a href="pr/multi-wait/">Show promise with worldwide multi-option shipping</a></li>
+            <li><a href="pr/us-wait/">Show promise with US-only shipping</a></li>
+          </ul>
+        </li>
+        <li>Retry
+          <ul>
+            <li><a href="pr/shipping-validation/">Retry with shipping address validation</a></li>
+            <li><a href="pr/payer-validation/">Retry with payer info validation</a></li>
+            <li><a href="pr/multi-validation/">Retry with shipping address and payer info validation</a></li>
+          </ul>
+        </li>
         <li><a href="pr/type/">Credit, debit, prepaid</a></li>
+        <li><a href="pr/">Android Pay and credit cards</a></li>
+        <li><a href="pr/ap/">Android Pay only</a></li>
+        <li><a href="pr/alice/">Alice Pay</a></li>
+        <li><a href="pr/alipay/">Alipay</a></li>
         <li><a href="pr/ko/">Failures</a></li>
 		<li> exception test
           <ul>

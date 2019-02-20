@@ -2,6 +2,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Autofill Smoke Test</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
 
   var phoneNumber = '310-310-6000';
@@ -31,7 +32,7 @@
 	  form['city'].value = 'Metropolis';
 	  form['state'].value = 'NY';
 	  form['zip'].value = '55555';
-	  form['country'].value = 'Antarctica';
+	  form['country'].value = 'United States';
     form['phone'].value = phoneNumber;
   }
   var FillFormPresident = function() {
@@ -105,6 +106,26 @@
 	  form['password'].value = 'ILoveGeorgeBush';
       }
 
+      var changeVisibility = function(checkbox, targetId) {
+        document.getElementById(targetId).style.display = checkbox.checked ? 'none' : 'block';
+      }
+
+    function AjaxSubmit(event) {
+      var form = event.target.form;
+      $.ajax({
+        type: "POST",
+        crossDomain: true,
+        url: 'https://cors-test.appspot.com/',
+        data: $(form).serialize(),
+        success: function() {
+          form.parentNode.innerHTML = "Form Submitted";
+        }
+      });
+    }
+
+    function ShowPhoneNumber() {
+      document.getElementById('form_phone_container').style.display = 'block';
+    }
     </script>
     <style>
       .fork {
@@ -124,16 +145,20 @@
   <h3>Profile Autofill</h3>
 
 <form name="addr1.1" id="form1" action="https://example.com/" method="post">
-  Name: <br><input type="text" name="name" style="width: 100%;"><br>
-  Address: <br><input type="text" name="address" style="width: 100%;"><br>
-  City: <br><input type="text" name="city" style="width: 100%;"><br>
+  Name: <br><input type="text" name="name" placeholder="Name" style="width: 100%;"><br>
+  Address: <br><input type="text" name="address" placeholder="Address" style="width: 100%;"><br>
+  City: <br><input type="text" name="city" placeholder="City" style="width: 100%;"><br>
   State: <br><input type="text" name="state" style="width: 100%;"><br>
-  Zip: <br><input name="zip" id="form_zip" style="width: 100%;"><br>
-  Country: <br><input name="country" id="form_country" style="width: 100%;"><br>
-  Email: <br><input name="email" id="form_email" style="width: 100%;"><br>
-  Phone: <br><input name="phone" id="form_phone" style="width: 100%;"><br>
+  Zip: <br><input name="zip" id="form_zip" placeholder="Zip" style="width: 100%;"><br>
+  Country: <br><input name="country" id="form_country" placeholder="Country" style="width: 100%;"><br>
+  Email: <br><input name="email" id="form_email" placeholder="Email" style="width: 100%;"><br>
+  <div id="form_phone_container" style="display: none;">
+    Phone: <br><input name="phone" id="form_phone" placeholder="Phone" style="width: 100%;"><br>
+  </div>
   <input type="reset" value="Reset">
   <input type="submit" value="Submit" id="profile_submit">
+  <button type="button" onclick="AjaxSubmit(event)">AJAX Submit</button>
+  <button type="button" onclick="ShowPhoneNumber()">Show phone number</button>
 </form>
 
 <button type="button" onclick="FillFormSimpsons()">Fill Form (Simpsons)</button>
@@ -184,8 +209,8 @@
   <h3>Credit Card autofill</h3>
 
 <form name="cc1.1" id="cc1" action="https://example.com/" method="post">
-  Credit card number: <br><input type="text" name="CCNo" style="width: 100%;"><br>
-  Name on card: <br><input autofocus="" type="text" name="name" style="width: 100%;"><br>
+  Credit card number: <br><input type="text" name="CCNo" id="credit_card_number" style="width: 100%;"><br>
+  Name on card: <br><input autofocus="" type="text" name="name" id="credit_card_name" style="width: 100%;"><br>
   Expiry Date: <br><select name="CCExpiresMonth">
     <option value="01">01</option>
     <option value="02">02</option>
@@ -201,7 +226,7 @@
     <option value="12" selected>12</option>
   </select>
   /
-<select name="CCExpiresYear" value="2018">
+<select name="CCExpiresYear" value="2019">
     <option value="2010">2010</option>
     <option value="2011">2011</option>
     <option value="2012">2012</option>
@@ -210,8 +235,8 @@
     <option value="2015">2015</option>
     <option value="2016">2016</option>
     <option value="2017">2017</option>
-    <option value="2018" selected>2018</option>
-    <option value="2019">2019</option>
+    <option value="2018">2018</option>
+    <option value="2019" selected>2019</option>
     <option value="2020">2020</option>
     <option value="2021">2021</option>
     <option value="2022">2022</option>
@@ -300,17 +325,69 @@
    <h3>autocomplete="off" form</h3>
 
 <form name="addr1.1off" id="acoff" action="https://example.com/" method="post" autocomplete="off">
-  Name: <input type="text" name="name" autocomplete="off"><br>
-  Address: <input type="text" name="address" autocomplete="off"><br>
-  City: <input type="text" name="city" autocomplete="off"><br>
+  Name: <input type="text" name="name" autocomplete="off" value="Name"><br>
+  Address: <input type="text" name="address" autocomplete="off" value="Address"><br>
+  City: <input type="text" name="city" autocomplete="off" value="City"><br>
   State: <input type="text" name="state" autocomplete="off"><br>
-  Zip: <input name="zip" id="form_zip" autocomplete="off"> <br>
-  Email: <input name="email" id="form_email" autocomplete="off"> <br>
-  Phone: <input name="phone" id="form_phone" autocomplete="off"> <br>
+  Zip: <input name="zip" id="form_zip" autocomplete="off" value="Zip"> <br>
+  Email: <input name="email" id="form_email" autocomplete="off" value="Email"> <br>
+  Phone: <input name="phone" id="form_phone" autocomplete="off" value="Phone"> <br>
   <input type="reset" value="Reset">
   <input type="submit" value="Submit" id="autocomplete_off_submit">
 </form>
+-->
 
+<hr>
+<h3>Shipping and Billing sections</h3>
+
+<form name="addr1.sections" id="sections1" action="https://example.com/" method="post">
+  <div id='billing1'>
+    <h2>Billing Address</h2>
+    Name: <input type="text" name="name"><br>
+    Address: <input type="text" name="address"><br>
+    City: <input type="text" name="city"><br>
+    State: <select name="state">
+      <option value="CA">CA</option>
+      <option value="MA">MA</option>
+      <option value="NY">NY</option>
+      <option value="MD">MD</option>
+      <option value="OR">OR</option>
+      <option value="OH">OH</option>
+      <option value="IL">IL</option>
+      <option value="DC">DC</option>
+    </select> <br>
+    Zip: <input name="zip"> <br>
+    Country: <input name="country"> <br>
+    Email: <input name="email"> <br>
+  </div>
+    Ship to the same address:
+    <input name="same" type="checkbox" checked="checked" onchange="changeVisibility(this, 'shipping1')">
+  <div id='shipping1' style="display: none;">
+    <h2>Shipping Address</h2>
+    Name: <input type="text" name="s_name"><br>
+    Address: <input type="text" name="s_address"><br>
+    City: <input type="text" name="s_city"><br>
+    State: <select name="s_state">
+      <option value="CA">CA</option>
+      <option value="MA">MA</option>
+      <option value="NY">NY</option>
+      <option value="MD">MD</option>
+      <option value="OR">OR</option>
+      <option value="OH">OH</option>
+      <option value="IL">IL</option>
+      <option value="DC">DC</option>
+    </select> <br>
+    Zip: <input name="s_zip"> <br>
+    Country: <input name="s_country"> <br>
+    Email: <input name="s_email"> <br>
+  </div>
+  <div>
+    <input type="reset" value="Reset">
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+<!--
 <hr>
 <button type="button" onclick="FlipRTL()">RTL &lt;-&gt; LTR</button>
 -->

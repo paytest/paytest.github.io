@@ -8,11 +8,12 @@ function buildPaymentRequest() {
   }
 
   const supportedInstruments = [{
-    supportedMethods: [
-      'interledger',
-      'https://emerald-eon.appspot.com/bobpay',
-    ],
-  }];
+    supportedMethods: 'https://bobpay.xyz/pay'
+  },
+  {
+    supportedMethods: 'interledger'
+  }
+  ];
 
   const details = {
     total: {
@@ -72,10 +73,6 @@ function handlePaymentResponse(response) {
       });
   }, 500);
 }
-
-// Handle the response from PaymentRequest.show() if the page has been unloaded
-// while the user was performing the payment.
-window.addEventListener('paymentresponse', handlePaymentResponse);
 
 /**
  * Launches payment request for Bob Pay.

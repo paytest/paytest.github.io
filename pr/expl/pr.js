@@ -26,28 +26,13 @@ function updateDetails(details, shippingOption) {
   return details;
 }
 
-function updateDetailsTest(details, shippingOption) {
-  var selectedShippingOption;
-  var otherShippingOption;
-  if (shippingOption === 'standard') {
-    selectedShippingOption = details.shippingOptions[0];
-    otherShippingOption = details.shippingOptions[1];
-  } else {
-    selectedShippingOption = details.shippingOptions[1];
-    otherShippingOption = details.shippingOptions[0];
-  }
-  selectedShippingOption.selected = false;
-  otherShippingOption.selected = false;
-  return details;
-}
-
 /**
  * Launches payment request that provides multiple shipping options worldwide,
  * regardless of the shipping address.
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   var supportedInstruments = [{
-      supportedMethods: ['https://android.com/pay'],
+      supportedMethods: 'https://android.com/pay',
       data: {
         merchantName: 'Rouslan Solomakhin',
         merchantId: '00184145120947117657',
@@ -63,7 +48,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
       }
     },
     {
-      supportedMethods: ['basic-card', 'visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay']
+      supportedMethods: 'basic-card'
     }
   ];
 
@@ -96,7 +81,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         amount: {
           currency: 'USD',
           value: '0.00'
-        },
+        }
       },
       {
         id: 'express',
@@ -104,11 +89,10 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         amount: {
           currency: 'USD',
           value: '12.00'
-        },
+        }
       }
     ]
   };
- 
 
   var options = {
     requestShipping: true
@@ -126,7 +110,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
       e.updateWith(new Promise(function(resolve) {
         window.setTimeout(function() {
           // No changes in price based on shipping address change.
-          resolve(updateDetailsTest(details, request.shippingOption));
+          resolve(details);
         }, 2000);
       }));
     });
