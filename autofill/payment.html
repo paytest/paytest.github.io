@@ -1,0 +1,157 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Autofill Smoke Test</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      /* These are not valid credit card numbers!!!! */
+      /* They pass the Luhn check but that's it.     */
+      var CCFillFormSimpsons = function() {
+	  var form = document.forms['cc1'];
+	  form['name'].value = 'Homer Simpson';
+	  form['CCNo'].value = '4408-0412-3456-7893';
+	  form['CCExpiresMonth'].value = '06';
+	  form['CCExpiresYear'].value = '2013';
+      }
+      var CCFillFormSuperman = function() {
+	  var form = document.forms['cc1'];
+	  form['name'].value = 'Superman';
+	  form['CCNo'].value = '4000-4444-4444-4444';
+	  form['CCExpiresMonth'].value = '01';
+	  form['CCExpiresYear'].value = '2021';
+      }
+      var CCFillFormPresident = function() {
+	  var form = document.forms['cc1'];
+	  form['name'].value = 'Barack Obama';
+	  form['CCNo'].value = '4417-1234-5678-9113';
+	  form['CCExpiresMonth'].value = '12';
+	  form['CCExpiresYear'].value = '2022';
+      }
+
+      var NPFillFormSimpsons = function() {
+	  var form = document.forms['np1'];
+	  form['name'].value = 'Homer_Simpson';
+	  form['password'].value = 'DOH!';
+      }
+      var NPFillFormSuperman = function() {
+	  var form = document.forms['np1'];
+	  form['name'].value = 'Superman';
+	  form['password'].value = 'LouisLane';
+      }
+      var NPFillFormPresident = function() {
+	  var form = document.forms['np1'];
+	  form['name'].value = 'Barackalypse';
+	  form['password'].value = 'ILoveGeorgeBush';
+      }
+      var NPFillFormSimpsons2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Homer_Simpson';
+	  form['password'].value = 'DOH!';
+      }
+      var NPFillFormSuperman2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Superman';
+	  form['password'].value = 'LouisLane';
+      }
+      var NPFillFormPresident2 = function() {
+	  var form = document.forms['np2'];
+	  form['name'].value = 'Barackalypse';
+	  form['password'].value = 'ILoveGeorgeBush';
+      }
+    </script>
+    <style>
+      .fork {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+  <em>Beware what you post, all the forms send data to https://example.com.</em>
+  <br><br>
+</p><hr>
+  <h3>Credit Card autofill</h3>
+
+<form name="cc1.1" id="cc1" action="https://example.com/" method="post">
+  Credit card number: <br><input type="text" name="CCNo" id="credit_card_number" style="width: 100%;"><br>
+  Name on card: <br><input autofocus="" type="text" name="name" id="credit_card_name" style="width: 100%;"><br>
+  Expiry Date: <br><select name="CCExpiresMonth">
+    <option value="01">01</option>
+    <option value="02">02</option>
+    <option value="03">03</option>
+    <option value="04">04</option>
+    <option value="05">05</option>
+    <option value="06">06</option>
+    <option value="07">07</option>
+    <option value="08">08</option>
+    <option value="09">09</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12" selected>12</option>
+  </select>
+  /
+<select name="CCExpiresYear" value="2019">
+    <option value="2010">2010</option>
+    <option value="2011">2011</option>
+    <option value="2012">2012</option>
+    <option value="2013">2013</option>
+    <option value="2014">2014</option>
+    <option value="2015">2015</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+    <option value="2019" selected>2019</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
+    <option value="2029">2029</option>
+    <option value="2030">2030</option>
+    <option value="2031">2031</option>
+    <option value="2032">2032</option>
+    <option value="2033">2033</option>
+    <option value="2034">2034</option>
+    <option value="2035">2035</option>
+    <option value="2036">2036</option>
+    <option value="2037">2037</option>
+    <option value="2038">2038</option>
+    <option value="2039">2039</option>
+    <option value="2040">2040</option>
+  </select>
+  <br>
+  CVC: <br><input name="cvc" style="width: 100%;">
+<br>
+  <input type="reset" value="Reset">
+  <input type="submit" value="Submit" id="credit_card_submit">
+</form>
+
+<p>
+
+<button type="button" onclick="CCFillFormSimpsons()">CC Fill Form (Simpsons)</button>
+<br>
+<button type="button" onclick="CCFillFormSuperman()">CC Fill Form (Superman)</button>
+<br>
+<button type="button" onclick="CCFillFormPresident()">CC Fill Form (President)</button>
+<br>
+	
+</p><hr>
+  <h3>UPI - Virtual Payment Address autofill</h3>
+<form action="https://example.com/" method="post">
+	Enter virtual payment address: <br>
+	<input type="text" name="vpa" style="width: 100%;"><br>
+	name1: <br>
+	<input type="text" name="name1" style="width: 100%;"><br>
+	name2: <br>
+	<input type="text" name="name2" style="width: 100%;"><br>
+	name3: <br>
+	<input type="text" name="name3" style="width: 100%;"><br>
+	<input type="submit" value="Submit">
+</form>
+</body></html>
