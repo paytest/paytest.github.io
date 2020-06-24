@@ -98,7 +98,8 @@
       var NPFillFormSuperman2 = function() {
 	  var form = document.forms['np2'];
 	  form['name'].value = 'Superman';
-	  form['password'].value = 'LouisLane';
+	  form['password'].value = 'LouisLane';175492
+
       }
       var NPFillFormPresident2 = function() {
 	  var form = document.forms['np2'];
@@ -142,6 +143,43 @@
 <!--
   This page: <a href="https://goo.gl/B6Xs1E">https://goo.gl/B6Xs1E</a>
 -->
+<hr>
+  <h3>Name/Password</h3>
+
+  <form name="np" id="np1" action="https://example.com/" method="post">
+  Name: <input type="text" name="name" id="password_name"><br>
+  Password: <input type="password" name="password" id="password_field"><br>
+  <input type="reset" value="Reset">
+  <input type="submit" value="Submit" id="password_submit">
+  </form>
+
+<p>
+
+<button type="button" onclick="NPFillFormSimpsons()">NP Fill Form (Simpsons)</button>
+<br>
+<button type="button" onclick="NPFillFormSuperman()">NP Fill Form (Superman)</button>
+<br>
+<button type="button" onclick="NPFillFormPresident()">NP Fill Form (President)</button>
+<br></p></hr>
+
+<hr>
+  <h3>Name/Password2</h3>
+
+  <form name="np" id="np2" action="https://example.com/" method="post">
+  Name: <input type="text" name="name" id="password_name2"><br>
+  Password: <input type="password" name="password" id="password_field2"><br>
+  <input type="reset" value="Reset">
+  <input type="submit" value="Submit" id="password_submit">
+  </form>
+
+<p>
+
+<button type="button" onclick="NPFillFormSimpsons2()">NP Fill Form (Simpsons)</button>
+<br>
+<button type="button" onclick="NPFillFormSuperman2()">NP Fill Form (Superman)</button>
+<br>
+<button type="button" onclick="NPFillFormPresident2()">NP Fill Form (President)</button>
+<br></p></hr>	  
   <h3>Profile Autofill</h3>
 
 <form name="addr1.1" id="form1" action="https://example.com/" method="post">
@@ -282,43 +320,7 @@
   <input type="submit" value="Submit">
 </form>
 	
-</p><hr>
-  <h3>Name/Password</h3>
-
-  <form name="np" id="np1" action="https://example.com/" method="post">
-  Name: <input type="text" name="name" id="password_name"><br>
-  Password: <input type="password" name="password" id="password_field"><br>
-  <input type="reset" value="Reset">
-  <input type="submit" value="Submit" id="password_submit">
-  </form>
-
-<p>
-
-<button type="button" onclick="NPFillFormSimpsons()">NP Fill Form (Simpsons)</button>
-<br>
-<button type="button" onclick="NPFillFormSuperman()">NP Fill Form (Superman)</button>
-<br>
-<button type="button" onclick="NPFillFormPresident()">NP Fill Form (President)</button>
-<br></p></hr>
-
-<hr>
-  <h3>Name/Password2</h3>
-
-  <form name="np" id="np2" action="https://example.com/" method="post">
-  Name: <input type="text" name="name" id="password_name2"><br>
-  Password: <input type="password" name="password" id="password_field2"><br>
-  <input type="reset" value="Reset">
-  <input type="submit" value="Submit" id="password_submit">
-  </form>
-
-<p>
-
-<button type="button" onclick="NPFillFormSimpsons2()">NP Fill Form (Simpsons)</button>
-<br>
-<button type="button" onclick="NPFillFormSuperman2()">NP Fill Form (Superman)</button>
-<br>
-<button type="button" onclick="NPFillFormPresident2()">NP Fill Form (President)</button>
-<br></p></hr>
+</p>
 
 <!--
 </p><hr>
